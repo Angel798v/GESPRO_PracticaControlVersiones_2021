@@ -136,6 +136,8 @@ dependencies {
     compile 'com.android.support:support-v4:26.1.0'
     // Google Location and Activity Recognition : https://developers.google.com/android/guides/setup
     compile 'com.google.android.gms:play-services-location:11.4.0'
+    // Firebase Analytics : https://firebase.google.com/docs/android/setup#available_libraries
+    compile 'com.google.firebase:firebase-core:11.4.0'
     // OpenCV (computer vision) : https://github.com/davidmigloz/opencv-android-gradle-repo/
     compile 'com.github.davidmigloz:opencv-android-gradle-repo:3.2.0'
     // Guava (Google Core Libraries) : https://github.com/google/guava
@@ -231,3 +233,24 @@ sonarqube {
         property "sonar.jacoco.reportMissing.force.zero", true
     }
 }
+
+/**
+ * Returns git commit long hash.
+ */
+private String getCommitHash() {
+    return 'git rev-parse HEAD'.execute([], project.rootDir).text.trim();
+}
+/**
+ * Returns build date.
+ */
+private static String getBuildDate() {
+    return new GregorianCalendar().format("yyyy-MM-dd'T'HH:mm.ss'Z'");
+}
+/**
+ * Returns app name.
+ */
+private static String getAppName() {
+    return "GoBees"
+}
+
+apply plugin: 'com.google.gms.google-services'
